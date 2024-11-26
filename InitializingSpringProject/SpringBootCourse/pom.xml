@@ -8,11 +8,11 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.corporativo</groupId>
-	<artifactId>cursoSpringBoot</artifactId>
+	<groupId>com.corporate</groupId>
+	<artifactId>SpringBootCourse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Curso con Spring Boot</name>
-	<description>Proyecto de un microservicio para el curso Spring Boot</description>
+	<name>SpringBootCourse</name>
+	<description>Microservices project for Spring Boot course</description>
 	<url/>
 	<licenses>
 		<license/>
