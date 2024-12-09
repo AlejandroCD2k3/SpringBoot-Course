@@ -75,4 +75,27 @@ public class CustomerController {
         return null;
     }
 
+    //------------------ DELETE REQUESTS ------------------
+
+    @PatchMapping("/customers")
+    public Customer patchCustomer(@RequestBody Customer customer){
+        for (Customer myCustomer: customerList){
+            if(myCustomer.getId() == customer.getId()){
+
+                if(customer.getName() != null){
+                    myCustomer.setName(customer.getName());
+                }
+                if(customer.getUsername() != null){
+                    myCustomer.setUsername(customer.getUsername());
+                }
+                if(customer.getPassword() != null){
+                    myCustomer.setPassword(customer.getPassword());
+                }
+
+                return myCustomer;
+            }
+        }
+
+        return null;
+    }
 }
