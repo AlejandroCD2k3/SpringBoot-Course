@@ -1,8 +1,7 @@
 package apiApplication.Controllers;
 
 import apiApplication.Domain.Customer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,8 +17,62 @@ public class CustomerController {
             new Customer(321, "Christine", "chris", "chris321")
     ));
 
-    @GetMapping("customers")
+    //------------------ GET REQUESTS ------------------
+
+    @GetMapping("/customers")
     public List<Customer> getCustomerList(){
         return customerList;
     }
+
+    @GetMapping("/customers/{username}")
+    public Customer getCustomer(@PathVariable String username){
+        for(Customer customer: customerList){
+            if(customer.getUsername().equalsIgnoreCase(username)){
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    //------------------ POST REQUESTS ------------------
+
+    @PostMapping("/customers")
+    public Customer postCustomer(@RequestBody Customer customer){
+        customerList.add(customer);
+        return customer;
+    }
+
+    //------------------ PUT REQUESTS ------------------
+
+    @PutMapping("/customers")
+    public Customer putCustomer(@RequestBody Customer customer){
+        for(Customer myCustomer: customerList){
+            if(myCustomer.getId() == customer.getId()){
+                myCustomer.setName(customer.getName());
+                myCustomer.setUsername(customer.getUsername());
+                myCustomer.setPassword(customer.getPassword());
+
+                return myCustomer;
+            }
+        }
+
+        return null;
+    }
+
+    //------------------ DELETE REQUESTS ------------------
+
+    @DeleteMapping("/customers")
+    public Customer deleteCustomer(@RequestBody int id){
+
+        for(Customer customer: customerList){
+            if(id == customer.getId()){
+                customerList.remove(customer);
+
+                return customer;
+            }
+        }
+
+        return null;
+    }
+
 }
